@@ -7,6 +7,8 @@ export type { LearningPath, Article, PathItemLevel } from "@ui-library/utils/con
 interface ListPathsOptions {
 	public?: boolean;
 	listed?: boolean;
+	/** Incluye las rutas sin publicar. Requiere permiso de publicación; el servidor lo ignora si no lo hay. */
+	all?: boolean;
 	limit?: number;
 	skip?: number;
 }

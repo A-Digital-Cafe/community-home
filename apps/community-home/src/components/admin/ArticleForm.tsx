@@ -43,7 +43,7 @@ export function ArticleForm({ article }: Props) {
 	const [canPub, setCanPub] = useState(false);
 
 	useEffect(() => {
-		contentAPI.listPaths({ listed: undefined }).then(setPaths);
+		contentAPI.listPaths({ all: true }).then(setPaths);
 		getSession().then((s) => setCanPub(canPublish(s.user?.perms)));
 	}, []);
 

@@ -62,7 +62,7 @@ function PathsAdminBody() {
 	}, []);
 
 	async function refresh() {
-		setPaths(await contentAPI.listPaths({ listed: undefined }));
+		setPaths(await contentAPI.listPaths({ all: true }));
 	}
 
 	async function startEdit(slug: string) {
