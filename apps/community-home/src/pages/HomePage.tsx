@@ -66,17 +66,6 @@ export function HomePage() {
 				</adc-feature-card>
 			</section>
 
-			<section className="grid gap-4 sm:grid-cols-3 mt-12" aria-label="Testimonios de la comunidad">
-				<adc-testimonial-card author="@lokitomiko">
-					Buena comunidad activa para la gente que hay. Se disfruta, únanse. (desde Discord)
-				</adc-testimonial-card>
-				<adc-testimonial-card author="@soysalwa">
-					Eehh. No sé. :xd: Mentira, "Cuando no sepas que hacer o donde ir, recuerda que un café caliente soluciona muchos dolores de
-					cabeza, únete al café digital de Abby."
-				</adc-testimonial-card>
-				<adc-testimonial-card author="Dev C">Gran comunidad para programar y relajarse.</adc-testimonial-card>
-			</section>
-
 			<section className="text-center space-y-4 mt-12" aria-label="Redes sociales">
 				<h2 className="text-2xl font-heading">Nuestras redes</h2>
 				<div className="flex justify-center gap-3 flex-wrap">
@@ -89,6 +78,17 @@ export function HomePage() {
 			</section>
 
 			<AlliesSection />
+
+			<section className="grid gap-4 sm:grid-cols-3 mt-12" aria-label="Testimonios de la comunidad">
+				<adc-testimonial-card author="@lokitomiko">
+					Buena comunidad activa para la gente que hay. Se disfruta, únanse. (desde Discord)
+				</adc-testimonial-card>
+				<adc-testimonial-card author="@soysalwa">
+					Eehh. No sé. :xd: Mentira, "Cuando no sepas que hacer o donde ir, recuerda que un café caliente soluciona muchos dolores de
+					cabeza, únete al café digital de Abby."
+				</adc-testimonial-card>
+				<adc-testimonial-card author="Dev C">Gran comunidad para programar y relajarse.</adc-testimonial-card>
+			</section>
 		</div>
 	);
 }
