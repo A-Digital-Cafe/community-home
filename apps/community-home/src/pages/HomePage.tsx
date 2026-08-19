@@ -26,33 +26,20 @@ const BRAND = {
 	slogan: "Una taza de código con tintes de amistad",
 };
 
-/**
- * Cada sección se acota por su cuenta: el `<main>` de `adc-layout` es `xl:w-max`, así que un bloque
- * sin límite propio estira el ancho de TODA la página. `7xl` y no `6xl`: es el mismo ancho del piso
- * `xl:min-w-7xl` de `main`, así que la sección llena exactamente lo que `main` ya reserva en vez de
- * quedar más angosta que su propio contenedor (el "doble margen" que se veía hueco en pantallas anchas).
- */
-const SECTION = "mt-16 max-w-7xl mx-auto";
+const SECTION = "mt-14 max-w-7xl mx-auto";
 
 export function HomePage() {
 	return (
 		<div className="px-4 sm:px-6">
-			<section id="home" className="flex flex-col items-center text-center max-w-3xl mx-auto" aria-label="Página principal de Abby's Digital Cafe">
+			<section
+				id="home"
+				className="flex flex-col items-center text-center max-w-3xl mx-auto"
+				aria-label="Página principal de Abby's Digital Cafe"
+			>
 				<h1 className="text-3xl font-heading mb-3">{BRAND.name}</h1>
 				<p className="mb-6 contain-content">{BRAND.description}</p>
 				{DISCORD_URL && <adc-button href={DISCORD_URL} label="Entrar al Discord" />}
 				<adc-quote class="pr-16 mt-6">{BRAND.slogan}</adc-quote>
-			</section>
-
-			<section className={`grid gap-4 sm:grid-cols-3 ${SECTION}`} aria-label="Testimonios de la comunidad">
-				<adc-testimonial-card author="@lokitomiko">
-					Buena comunidad activa para la gente que hay. Se disfruta, únanse. (desde Discord)
-				</adc-testimonial-card>
-				<adc-testimonial-card author="@soysalwa">
-					Eehh. No sé. :xd: Mentira, "Cuando no sepas que hacer o donde ir, recuerda que un café caliente soluciona muchos dolores de
-					cabeza, únete al café digital de Abby."
-				</adc-testimonial-card>
-				<adc-testimonial-card author="Dev C">Gran comunidad para programar y relajarse.</adc-testimonial-card>
 			</section>
 
 			{/* Las tarjetas llevan a algún lado: antes anunciaban que existía contenido propio sin dar
@@ -97,6 +84,20 @@ export function HomePage() {
 			</section>
 
 			<AlliesSection />
+
+			<section className={`flex flex-col items-center ${SECTION}`} aria-label="Testimonios de la comunidad">
+				<h2 className="text-2xl font-heading text-center mb-8 w-max">Testimonios de la comunidad</h2>
+				<div className="grid gap-4 sm:grid-cols-3">
+					<adc-testimonial-card author="@lokitomiko">
+						Buena comunidad activa para la gente que hay. Se disfruta, únanse. (desde Discord)
+					</adc-testimonial-card>
+					<adc-testimonial-card author="@soysalwa">
+						Eehh. No sé. :xd: Mentira, "Cuando no sepas que hacer o donde ir, recuerda que un café caliente soluciona muchos dolores
+						de cabeza, únete al café digital de Abby."
+					</adc-testimonial-card>
+					<adc-testimonial-card author="Dev C">Gran comunidad para programar y relajarse.</adc-testimonial-card>
+				</div>
+			</section>
 
 			<section className={`${SECTION} text-center space-y-4`} aria-label="Redes sociales">
 				<h2 className="text-2xl font-heading">Nuestras redes</h2>
