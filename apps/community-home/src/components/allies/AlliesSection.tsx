@@ -49,10 +49,11 @@ export function AlliesSection() {
 
 	const totalPages = Math.max(1, Math.ceil(total / ALLY_PAGE_SIZE));
 
-	// `max-w-6xl`: el <main> de adc-layout es `xl:w-max`, así que una grilla de descripciones largas
-	// empuja el ancho de TODA la página si no se la acota.
+	// `max-w-7xl`: mismo ancho que el resto de las secciones de la home (ver comentario de `SECTION`
+	// en HomePage.tsx) — es el piso `xl:min-w-7xl` de `main` en adc-layout, así que la grilla lo llena
+	// en vez de quedar más angosta que su propio contenedor.
 	return (
-		<section id="aliados" className="mt-12 max-w-6xl mx-auto" aria-label="Comunidades amigas">
+		<section id="aliados" className="mt-12 max-w-7xl mx-auto" aria-label="Comunidades amigas">
 			<h2 className="text-2xl font-heading text-center">Comunidades amigas</h2>
 			<p className="text-sm text-muted text-center max-w-3xl mx-auto mt-2">
 				Comunidades ajenas a ADC: no las operamos ni las moderamos, y aparecer acá no implica respaldo ni relación comercial.{" "}

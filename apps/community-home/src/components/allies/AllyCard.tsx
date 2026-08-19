@@ -9,6 +9,9 @@ interface Props {
 export function AllyCard({ ally }: Props) {
 	const [expanded, setExpanded] = useState(false);
 	const [clampable, setClampable] = useState(false);
+	// Una subida que quedó a medias deja `logoAttachmentId` sin objeto en S3: sin esto la card
+	// muestra el ícono de imagen rota en vez de simplemente no mostrar logo.
+	const [logoFailed, setLogoFailed] = useState(false);
 	const textRef = useRef<HTMLSpanElement>(null);
 
 	// Se mide el recorte real en vez de contar caracteres: con un umbral fijo, una descripción
@@ -36,20 +39,28 @@ export function AllyCard({ ally }: Props) {
 		<adc-card class="p-4 flex flex-col gap-3 h-full">
 			<div className="flex items-center gap-3">
 				{/* Sin logo no se pinta un hueco: el título ocupa la fila entera. */}
-				{ally.hasLogo && (
+				{ally.hasLogo && !logoFailed && (
 					<img
 						src={allyLogoUrl(ally.id)}
 						alt=""
 						loading="lazy"
 						width={48}
 						height={48}
+						onError={() => setLogoFailed(true)}
 						className="w-12 h-12 rounded-xxl object-cover shrink-0"
 					/>
 				)}
 				<div className="min-w-0 flex-1">
 					<h3 className="font-heading text-lg truncate">{ally.name}</h3>
-					<span className="text-xs text-muted" title={`${ally.boostCount} de potencia acumulada`}>
-						⚡ {ally.boostCount}
+					{/* El comando completo y no sólo el id: es lo que hay que tipear en el Discord, y sin
+					    esto el id no aparecía en ningún lado del frontend. */}
+					<span className="flex items-center gap-1.5 flex-wrap mt-0.5">
+						<adc-badge color="yellow" size="sm" title={`${ally.boostCount} de potencia acumulada`}>
+							⚡ {ally.boostCount}
+						</adc-badge>
+						<adc-badge size="sm" title="Escribí este comando en el Discord de ADC para potenciarla">
+							/potenciar {ally.id}
+						</adc-badge>
 					</span>
 				</div>
 			</div>
