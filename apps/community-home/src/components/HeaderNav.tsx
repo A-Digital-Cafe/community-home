@@ -10,12 +10,15 @@ import { canEditContent, canPublish } from "../utils/permissions";
 export default function HeaderNav() {
 	const [showAdmin, setShowAdmin] = useState(false);
 	const [showPublish, setShowPublish] = useState(false);
+	const [showAllies, setShowAllies] = useState(false);
 
 	useEffect(() => {
 		getSession().then((s) => {
 			const perms = s.user?.perms;
 			setShowAdmin(canEditContent(perms));
 			setShowPublish(canPublish(perms));
+			// El directorio de comunidades es decisión editorial de plataforma: sólo admin global.
+			setShowAllies(s.user?.isAdmin === true);
 		});
 	}, []);
 
@@ -49,6 +52,13 @@ export default function HeaderNav() {
 				<li>
 					<a href="/admin/paths" className="hover:underline">
 						Paths admin
+					</a>
+				</li>
+			)}
+			{showAllies && (
+				<li>
+					<a href="/admin/allies" className="hover:underline">
+						Comunidades
 					</a>
 				</li>
 			)}

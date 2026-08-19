@@ -1,4 +1,5 @@
 import { publicEnv } from "@common/utils/public-env.js";
+import { AlliesSection } from "../components/allies/AlliesSection";
 
 /** Vacío si el despliegue no configuró `ADC_PUBLIC_DISCORD_URL`: ahí no se ofrece el enlace. */
 const DISCORD_URL = publicEnv("discordUrl");
@@ -65,14 +66,6 @@ export function HomePage() {
 				</adc-feature-card>
 			</section>
 
-			<section className="text-center space-y-4 mt-12" aria-label="Música para programar">
-				<h2 className="text-2xl font-heading">Durante tu sesión de código: Cozy Beats</h2>
-				<adc-text>Música lofi para acompañar tus sesiones de código.</adc-text>
-				<div className="flex justify-center max-w-2xl mx-auto">
-					<adc-youtube-facade src="SXySxLgCV-8" title="Cozy Beats - Música lofi"></adc-youtube-facade>
-				</div>
-			</section>
-
 			<section className="grid gap-4 sm:grid-cols-3 mt-12" aria-label="Testimonios de la comunidad">
 				<adc-testimonial-card author="@lokitomiko">
 					Buena comunidad activa para la gente que hay. Se disfruta, únanse. (desde Discord)
@@ -94,6 +87,8 @@ export function HomePage() {
 					))}
 				</div>
 			</section>
+
+			<AlliesSection />
 		</div>
 	);
 }

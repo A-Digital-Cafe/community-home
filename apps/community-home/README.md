@@ -20,3 +20,6 @@ Ver `.env.example` para más opciones (Atlas, Docker, etc).
 - Página principal con info de la comunidad
 - Learning Paths desde MongoDB vía Connect RPC
 - Routing con `@ui-library/utils/router`
+- Directorio de comunidades amigas (paginado de a 10, orden por potencia o por boost reciente).
+  Panel en `/admin/allies`, sólo admin global. El disclaimer y los requisitos van en
+  `components/allies/AlliesInfoModal.tsx`: es el aviso legal del listado, no texto decorativo.

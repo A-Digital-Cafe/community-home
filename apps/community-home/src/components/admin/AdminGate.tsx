@@ -6,9 +6,14 @@ import { canEditContent, canPublish } from "../../utils/permissions";
 interface Props {
 	readonly children: (session: SessionResponse, isReviewer: boolean) => React.ReactNode;
 	readonly requirePublish?: boolean;
+	/**
+	 * Exige admin **global** de la plataforma (`isAdmin`, que el backend calcula como rol Admin sin
+	 * organización activa). Los permisos de comunidad no alcanzan: pueden venir de un rol de org.
+	 */
+	readonly requireGlobalAdmin?: boolean;
 }
 
-export function AdminGate({ children, requirePublish = false }: Props) {
+export function AdminGate({ children, requirePublish = false, requireGlobalAdmin = false }: Props) {
 	const [session, setSession] = useState<SessionResponse | null>(null);
 	const [allowed, setAllowed] = useState<boolean | null>(null);
 	const [reviewer, setReviewer] = useState(false);
@@ -19,10 +24,13 @@ export function AdminGate({ children, requirePublish = false }: Props) {
 			const perms = s.user?.perms;
 			const isReviewer = canPublish(perms);
 			setReviewer(isReviewer);
-			const ok = requirePublish ? isReviewer : canEditContent(perms) || isReviewer;
+			let ok: boolean;
+			if (requireGlobalAdmin) ok = s.user?.isAdmin === true;
+			else if (requirePublish) ok = isReviewer;
+			else ok = canEditContent(perms) || isReviewer;
 			setAllowed(ok);
 		});
-	}, [requirePublish]);
+	}, [requirePublish, requireGlobalAdmin]);
 
 	if (allowed === null) return <p className="text-center py-8 text-muted">Verificando permisos...</p>;
 	if (!allowed) {

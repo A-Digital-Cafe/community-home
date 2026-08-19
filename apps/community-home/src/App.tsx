@@ -10,6 +10,7 @@ import { AdminArticlesPage } from "./pages/admin/AdminArticlesPage";
 import { AdminArticleEditPage } from "./pages/admin/AdminArticleEditPage";
 import { AdminPublishPage } from "./pages/admin/AdminPublishPage";
 import { AdminPathsPage } from "./pages/admin/AdminPathsPage";
+import { AdminAlliesPage } from "./pages/admin/AdminAlliesPage";
 import HeaderNav from "./components/HeaderNav";
 
 export default function App() {
@@ -27,6 +28,7 @@ export default function App() {
 		if (currentPath === "/admin/articles") return <AdminArticlesPage />;
 		if (currentPath === "/admin/publish") return <AdminPublishPage />;
 		if (currentPath === "/admin/paths" || currentPath.startsWith("/admin/paths?")) return <AdminPathsPage />;
+		if (currentPath === "/admin/allies") return <AdminAlliesPage />;
 		if (currentPath.startsWith("/paths/")) {
 			const slug = currentPath.slice(7).split("?")[0];
 			return slug ? <PathPage slug={slug} /> : <PathsPage />;
