@@ -18,6 +18,18 @@
 				"Content-Security-Policy-Extend": "img-src https:; frame-src https://www.youtube-nocookie.com; child-src https://www.youtube-nocookie.com"
 			}
 		},
+		"spaRoutes": [
+			"/",
+			"/articles",
+			"/articles/:slug",
+			"/paths",
+			"/paths/:slug",
+			"/admin/articles",
+			"/admin/articles/:slug",
+			"/admin/publish",
+			"/admin/paths",
+			"/admin/allies"
+		],
 		"hosting": [
 			{
 				"domains": ["adigitalcafe.com"],

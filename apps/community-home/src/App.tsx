@@ -20,6 +20,8 @@ export default function App() {
 		return router.setOnRouteChange(setCurrentPath);
 	}, []);
 
+	// Las rutas de acá abajo son espejo de `uiModule.spaRoutes` en config.json: lo que no esté
+	// declarado ahí lo sirve el kernel con 404. Agregar una sin agregarla allá la deja inalcanzable.
 	function renderPage() {
 		if (currentPath.startsWith("/admin/articles/")) {
 			const slug = currentPath.slice(16).split("?")[0];
@@ -39,7 +41,17 @@ export default function App() {
 			return slug ? <ArticlePage slug={slug} /> : <ArticlesPage />;
 		}
 		if (currentPath === "/articles") return <ArticlesPage />;
-		return <HomePage />;
+		if (currentPath === "/" || currentPath === "") return <HomePage />;
+		// El server ya contestó 404 para lo que no esté en `spaRoutes` (config.json); mostrar la
+		// home acá dejaba esa respuesta con aspecto de página real.
+		return (
+			<adc-not-found
+				actions={JSON.stringify([
+					{ label: "Ir al inicio", href: "/" },
+					{ label: "Ver artículos", href: "/articles" },
+				])}
+			/>
+		);
 	}
 
 	return (
